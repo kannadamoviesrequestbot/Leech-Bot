@@ -1,7 +1,8 @@
 import os
 
 from pyrogram import Client, filters
-from pyrogram.handlers import CallbackQueryHandler, MessageHandler
+from pyrogram.handlers import CallbackQueryHandler, MessageHandler, \n
+    InlineQueryHandler
 
 from tobrot import (
     API_HASH,
@@ -43,6 +44,7 @@ from tobrot import (
 from tobrot.helper_funcs.download import down_load_media_f
 from tobrot.helper_funcs.help_func import help_message_f
 from tobrot.plugins.call_back_button_handler import button
+from tobrot.plugins.torrent_inline import inline_handlers
 
 # the logging things
 from tobrot.plugins.choose_rclone_config import rclone_command_f
@@ -126,6 +128,11 @@ if __name__ == "__main__":
         & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(incoming_clonezip_handler)
+    #
+    incoming_torrent_inline = InlineQueryHandler(
+        inline_handlers,
+    )
+    app.add_handler(incoming_torrent_inline)
     #
     incoming_size_checker_handler = MessageHandler(
         check_size_g,
