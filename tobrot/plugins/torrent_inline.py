@@ -6,6 +6,8 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, 
 
 from tobrot.helper_funcs.torrent_search import SearchYTS, SearchAnime, Search1337x, SearchPirateBay
 
+THUMBNAIL = "https://telegra.ph/file/4025673f818a5d0f73caf.png"
+
 DEFAULT_SEARCH_MARKUP = [
                     [InlineKeyboardButton("Search YTS", switch_inline_query_current_chat="!yts "),
                      InlineKeyboardButton("Go Inline", switch_inline_query="!yts ")],
@@ -14,8 +16,8 @@ DEFAULT_SEARCH_MARKUP = [
                     [InlineKeyboardButton("Search 1337x", switch_inline_query_current_chat=""),
                      InlineKeyboardButton("Go Inline", switch_inline_query="")],
                     [InlineKeyboardButton("Search Anime", switch_inline_query_current_chat="!a "),
-                     InlineKeyboardButton("GO Inline", switch_inline_query_current_chat="!a ")],
-                    [InlineKeyboardButton("Join Projects Channel", url="https://t.me/JOSProjects")]
+                     InlineKeyboardButton("Go Inline", switch_inline_query_current_chat="!a ")],
+                    [InlineKeyboardButton("⭕ JOS Projects ⭕", url="https://t.me/JOSProjects")]
                 ]
 
 async def inline_handlers(_, inline: InlineQuery):
@@ -26,6 +28,7 @@ async def inline_handlers(_, inline: InlineQuery):
             InlineQueryResultArticle(
                 title="Search Something ...",
                 description="Search For Torrents ...",
+                thumb_url=THUMBNAIL,
                 input_message_content=InputTextMessageContent(
                     message_text="Search for Torrents from Inline!",
                     parse_mode="Markdown"
@@ -40,6 +43,7 @@ async def inline_handlers(_, inline: InlineQuery):
                 InlineQueryResultArticle(
                     title="!pb [text]",
                     description="Search For Torrent in ThePirateBay ...",
+                    thumb_url=THUMBNAIL,
                     input_message_content=InputTextMessageContent(
                         message_text="`!pb [text]`\n\nSearch ThePirateBay Torrents from Inline!",
                         parse_mode="Markdown"
@@ -54,6 +58,7 @@ async def inline_handlers(_, inline: InlineQuery):
                     InlineQueryResultArticle(
                         title="No Torrents Found in ThePirateBay!",
                         description=f"Can't find torrents for {query} in ThePirateBay !!",
+                        thumb_url=THUMBNAIL,
                         input_message_content=InputTextMessageContent(
                             message_text=f"No Torrents Found For `{query}` in ThePirateBay !!",
                             parse_mode="Markdown"
@@ -67,15 +72,9 @@ async def inline_handlers(_, inline: InlineQuery):
                         InlineQueryResultArticle(
                             title=f"{torrentList[i]['Name']}",
                             description=f"Seeders: {torrentList[i]['Seeders']}, Leechers: {torrentList[i]['Leechers']}\nSize: {torrentList[i]['Size']}",
+                            thumb_url=THUMBNAIL,
                             input_message_content=InputTextMessageContent(
-                                message_text=f"**Category:** `{torrentList[i]['Category']}`\n"
-                                             f"**Name:** `{torrentList[i]['Seeders']}`\n"
-                                             f"**Size:** `{torrentList[i]['Size']}`\n"
-                                             f"**Seeders:** `{torrentList[i]['Seeders']}`\n"
-                                             f"**Leechers:** `{torrentList[i]['Leechers']}`\n"
-                                             f"**Uploader:** `{torrentList[i]['Uploader']}`\n"
-                                             f"**Uploaded on {torrentList[i]['Date']}**\n\n"
-                                             f"**Magnet:**\n`{torrentList[i]['Magnet']}`\n\nPowered By @AHToolsBot",
+                                message_text=f"`{torrentList[i]['Magnet']}`",
                                 parse_mode="Markdown"
                             ),
                             reply_markup=InlineKeyboardMarkup(
@@ -89,6 +88,7 @@ async def inline_handlers(_, inline: InlineQuery):
                 InlineQueryResultArticle(
                     title="!yts [text]",
                     description="Search For Torrent in YTS ...",
+                    thumb_url=THUMBNAIL,
                     input_message_content=InputTextMessageContent(
                         message_text="`!yts [text]`\n\nSearch YTS Torrents from Inline!",
                         parse_mode="Markdown"
@@ -104,6 +104,7 @@ async def inline_handlers(_, inline: InlineQuery):
                     InlineQueryResultArticle(
                         title="No Torrents Found!",
                         description=f"Can't find YTS torrents for {query} !!",
+                        thumb_url=THUMBNAIL,
                         input_message_content=InputTextMessageContent(
                             message_text=f"No YTS Torrents Found For `{query}`",
                             parse_mode="Markdown"
@@ -120,14 +121,7 @@ async def inline_handlers(_, inline: InlineQuery):
                             title=f"{torrentList[i]['Name']}",
                             description=f"Language: {torrentList[i]['Language']}\nLikes: {torrentList[i]['Likes']}, Rating: {torrentList[i]['Rating']}",
                             input_message_content=InputTextMessageContent(
-                                message_text=f"**Genre:** `{torrentList[i]['Genre']}`\n"
-                                             f"**Name:** `{torrentList[i]['Name']}`\n"
-                                             f"**Language:** `{torrentList[i]['Language']}`\n"
-                                             f"**Likes:** `{torrentList[i]['Likes']}`\n"
-                                             f"**Rating:** `{torrentList[i]['Rating']}`\n"
-                                             f"**Duration:** `{torrentList[i]['Runtime']}`\n"
-                                             f"**Released on {torrentList[i]['ReleaseDate']}**\n\n"
-                                             f"**Torrent Download Links:**\n{dl_links}\n\nPowered By @AHToolsBot",
+                                message_text=f"{dl_links}",
                                 parse_mode="Markdown",
                                 disable_web_page_preview=True
                             ),
@@ -142,6 +136,7 @@ async def inline_handlers(_, inline: InlineQuery):
                 InlineQueryResultArticle(
                     title="!a [text]",
                     description="Search For Torrents for Anime ...",
+                    thumb_url=THUMBNAIL,
                     input_message_content=InputTextMessageContent(
                         message_text="`!a [text]`\n\nSearch Anime Torrents from Inline!",
                         parse_mode="Markdown"
@@ -157,6 +152,7 @@ async def inline_handlers(_, inline: InlineQuery):
                     InlineQueryResultArticle(
                         title="No Anime Torrents Found!",
                         description=f"Can't find Anime torrents for {query} !!",
+                        thumb_url=THUMBNAIL,
                         input_message_content=InputTextMessageContent(
                             message_text=f"No Anime Torrents Found For `{query}`",
                             parse_mode="Markdown"
@@ -171,14 +167,9 @@ async def inline_handlers(_, inline: InlineQuery):
                         InlineQueryResultArticle(
                             title=f"{torrentList[i]['Name']}",
                             description=f"Seeders: {torrentList[i]['Seeder']}, Leechers: {torrentList[i]['Leecher']}\nSize: {torrentList[i]['Size']}",
+                            thumb_url=THUMBNAIL,
                             input_message_content=InputTextMessageContent(
-                                message_text=f"**Name:** `{torrentList[i]['Name']}`\n"
-                                             f"**Category:** `{torrentList[i]['Category']}`\n"
-                                             f"**Seeders:** `{torrentList[i]['Seeder']}`\n"
-                                             f"**Leechers:** `{torrentList[i]['Leecher']}`\n"
-                                             f"**Size:** `{torrentList[i]['Size']}`\n"
-                                             f"**Upload Date:** `{torrentList[i]['Date']}`\n\n"
-                                             f"**Magnet:** \n`{torrentList[i]['Magnet']}`\n\nPowered By @AHToolsBot",
+                                message_text=f"`{torrentList[i]['Magnet']}`",
                                 parse_mode="Markdown"
                             ),
                             reply_markup=InlineKeyboardMarkup(
@@ -193,6 +184,7 @@ async def inline_handlers(_, inline: InlineQuery):
                 InlineQueryResultArticle(
                     title="No Torrents Found!",
                     description=f"Can't find torrents for {search_ts} !!",
+                    thumb_url=THUMBNAIL,
                     input_message_content=InputTextMessageContent(
                         message_text=f"No Torrents Found For `{search_ts}`",
                         parse_mode="Markdown"
@@ -207,18 +199,9 @@ async def inline_handlers(_, inline: InlineQuery):
                     InlineQueryResultArticle(
                         title=f"{torrentList[i]['Name']}",
                         description=f"Seeders: {torrentList[i]['Seeders']}, Leechers: {torrentList[i]['Leechers']}\nSize: {torrentList[i]['Size']}, Downloads: {torrentList[i]['Downloads']}",
+                        thumb_url=THUMBNAIL,
                         input_message_content=InputTextMessageContent(
-                            message_text=f"**Name:** `{torrentList[i]['Name']}`\n"
-                                         f"**Category:** `{torrentList[i]['Category']}`\n"
-                                         f"**Language:** `{torrentList[i]['Language']}`\n"
-                                         f"**Seeders:** `{torrentList[i]['Seeders']}`\n"
-                                         f"**Leechers:** `{torrentList[i]['Leechers']}`\n"
-                                         f"**Size:** `{torrentList[i]['Size']}`\n"
-                                         f"**Downloads:** `{torrentList[i]['Downloads']}`\n"
-                                         f"__Uploaded by {torrentList[i]['UploadedBy']}__\n"
-                                         f"__Uploaded {torrentList[i]['DateUploaded']}__\n"
-                                         f"__Last Checked {torrentList[i]['LastChecked']}__\n\n"
-                                         f"**Magnet:**\n`{torrentList[i]['Magnet']}`\n\nPowered By @AHToolsBot",
+                            message_text=f"`{torrentList[i]['Magnet']}`",
                             parse_mode="Markdown"
                         ),
                         reply_markup=InlineKeyboardMarkup(
