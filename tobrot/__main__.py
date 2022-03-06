@@ -1,8 +1,7 @@
 import os
 
 from pyrogram import Client, filters
-from pyrogram.handlers import CallbackQueryHandler, MessageHandler, \n
-    InlineQueryHandler
+from pyrogram.handlers import CallbackQueryHandler, InlineQueryHandler, MessageHandler
 
 from tobrot import (
     API_HASH,
