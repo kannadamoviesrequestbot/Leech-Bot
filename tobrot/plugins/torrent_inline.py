@@ -199,7 +199,6 @@ async def inline_handlers(_, inline: InlineQuery):
                     InlineQueryResultArticle(
                         title=f"{torrentList[i]['Name']}",
                         description=f"Seeders: {torrentList[i]['Seeders']}, Leechers: {torrentList[i]['Leechers']}\nSize: {torrentList[i]['Size']}, Downloads: {torrentList[i]['Downloads']}",
-                        thumb_url=THUMBNAIL,
                         input_message_content=InputTextMessageContent(
                             message_text=f"`{torrentList[i]['Magnet']}`",
                             parse_mode="Markdown"
@@ -207,7 +206,7 @@ async def inline_handlers(_, inline: InlineQuery):
                         reply_markup=InlineKeyboardMarkup(
                             [[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="")]]
                         ),
-                        thumb_url=torrentList[i]['Poster']
+                        thumb_url=THUMBNAIL
                     )
                 )
     try:
