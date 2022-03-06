@@ -233,9 +233,7 @@ async def inline_handlers(_, inline: InlineQuery):
             results=answers,
             cache_time=0
         )
-        print(f"Answered Successfully - {inline.from_user.first_name}")
     except QueryIdInvalid:
-        print(f"Failed to Answer - {inline.from_user.first_name} - Sleeping for 5s")
         await asyncio.sleep(5)
         try:
             await inline.answer(
@@ -245,5 +243,4 @@ async def inline_handlers(_, inline: InlineQuery):
                 switch_pm_parameter="start",
             )
         except QueryIdInvalid:
-            print(f"Failed to Answer Error - {inline.from_user.first_name} - Sleeping for 5s")
             await asyncio.sleep(5)
