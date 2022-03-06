@@ -18,7 +18,6 @@ DEFAULT_SEARCH_MARKUP = [
                     [InlineKeyboardButton("Join Projects Channel", url="https://t.me/JOSProjects")]
                 ]
 
-@Client.on_inline_query()
 async def inline_handlers(_, inline: InlineQuery):
     search_ts = inline.query
     answers = []
