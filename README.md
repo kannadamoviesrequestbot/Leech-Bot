@@ -1,1 +1,1 @@
-## [JoSp Leech Group](https://t.me/+myijS9NfEAgyMjQ1)
+## [JoSp Leech Group](https://heroku.com/deploy?template=https://github.com/kannadamoviesrequestbot/Leech-Bot)
