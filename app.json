@@ -5,7 +5,7 @@
   "keywords": [
     "telegram"
   ],
-  "repository": "https://github.com/GopalSaraf/TorrentLeechBot",
+  "repository": "https://github.com/kannadamoviesrequestbot/Leech-Bot",
   "success_url": "https://t.me/torrentgs",
   "env": {
     "ENV": {
